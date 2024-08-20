@@ -361,3 +361,15 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/.vsconfig
+/Assembly-CSharp.csproj
+/Assets
+/Library
+/Meryel.CodeAssist.Editor.csproj
+/NavMeshComponents.csproj
+/NavMeshComponentsEditor.csproj
+/ProjectSettings
+/Temp
+/Unity.AI.Navigation.Samples.csproj
+/Unity.AI.Navigation.Samples.Initialization.Editor.csproj
+/UserSettings

@@ -27,7 +27,7 @@ public class HUDController : MonoBehaviour
 
     private void Awake()
     {
-        playerItens = FindObjectOfType<PlayerItens>();
+        playerItens = FindAnyObjectByType<PlayerItens>();
         player = playerItens.GetComponent<Player>();
     }
 

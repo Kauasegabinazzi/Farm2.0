@@ -25,7 +25,7 @@ public class House : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerItens = FindObjectOfType<PlayerItens>();
+        playerItens = FindAnyObjectByType<PlayerItens>();
         playerAnim = playerItens.GetComponent<PlayerAnim>();
         isBeggining = false;
     }

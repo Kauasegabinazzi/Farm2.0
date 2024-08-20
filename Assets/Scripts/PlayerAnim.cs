@@ -13,7 +13,7 @@ public class PlayerAnim : MonoBehaviour
     {
         player = GetComponent<Player>();
         anim = GetComponent<Animator>();
-        cast = FindObjectOfType<Casting>();
+        cast = FindAnyObjectByType<Casting>();
     }
 
     // Update is called once per frame

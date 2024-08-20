@@ -11,7 +11,7 @@ public class Water : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerItens = FindObjectOfType<PlayerItens>();
+        playerItens = FindAnyObjectByType<PlayerItens>();
     }
 
     // Update is called once per frame

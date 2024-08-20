@@ -16,8 +16,8 @@ public class Casting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerItens = FindObjectOfType<PlayerItens>();
-        playerAnim = FindObjectOfType<PlayerAnim>();
+        playerItens = FindAnyObjectByType<PlayerItens>();
+        playerAnim = FindAnyObjectByType<PlayerAnim>();
     }
 
     // Update is called once per frame

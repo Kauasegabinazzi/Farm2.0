@@ -6,8 +6,9 @@ using UnityEngine.Rendering;
 public class AnimController : MonoBehaviour
 {
     private Animator anim;
-    [SerializeField] private float radius; 
-
+    [SerializeField] private float radius;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private Transform attack;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -20,6 +21,19 @@ public class AnimController : MonoBehaviour
 
     public void Attack()
     {
-        //Collider2D hit = Physics2D.OverlapCircle();
+        Collider2D hit = Physics2D.OverlapCircle(attack.position, radius, playerLayer);
+
+        if (hit != null) {
+            Debug.Log("bateu");
+        }
+        else
+        {
+
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attack.position, radius);
     }
 }

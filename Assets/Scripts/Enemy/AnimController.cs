@@ -9,9 +9,13 @@ public class AnimController : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform attack;
+
+    private PlayerAnim player;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        player = FindAnyObjectByType<PlayerAnim>();
     }
 
     public void PlayerAnim(int value)
@@ -24,7 +28,7 @@ public class AnimController : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(attack.position, radius, playerLayer);
 
         if (hit != null) {
-            Debug.Log("bateu");
+            player.onHit();
         }
         else
         {

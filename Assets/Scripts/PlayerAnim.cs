@@ -7,6 +7,9 @@ public class PlayerAnim : MonoBehaviour
     private Player player;
     private Animator anim;
     private Casting cast;
+    private bool isHitting;
+    private float timeCount;
+    private float recoverTime;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +17,7 @@ public class PlayerAnim : MonoBehaviour
         player = GetComponent<Player>();
         anim = GetComponent<Animator>();
         cast = FindAnyObjectByType<Casting>();
+        recoverTime = 1f;
     }
 
     // Update is called once per frame
@@ -21,6 +25,17 @@ public class PlayerAnim : MonoBehaviour
     {
         onMove();
         onRun();
+
+        if (isHitting)
+        {
+            timeCount += Time.deltaTime;
+
+            if (timeCount >= recoverTime)
+            {
+                isHitting = false;
+                recoverTime = 0f;
+            }
+        }
     }
 
     #region moviment
@@ -99,5 +114,14 @@ public class PlayerAnim : MonoBehaviour
     {
         anim.SetBool("Hammering", false);
         player.isPaused = false;
+    }
+
+    public void onHit()
+    {
+        if (!isHitting)
+        {
+            anim.SetTrigger("hit");
+            isHitting = true;
+        }
     }
 }

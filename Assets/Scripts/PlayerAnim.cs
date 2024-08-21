@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerAnim : MonoBehaviour
 {
+    [Header("attack settings")]
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float radius;
+    [SerializeField] private LayerMask enemy;
+
+
     private Player player;
     private Animator anim;
     private Casting cast;
@@ -88,6 +95,24 @@ public class PlayerAnim : MonoBehaviour
         }
 
     }
+    #endregion
+
+    #region attack
+
+    public void onAttack()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, radius, enemy);
+
+        if (hit != null) {
+            Debug.Log("acertou");
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, radius);
+    }
+
     #endregion
 
     // chamado quando o player precciona o botao

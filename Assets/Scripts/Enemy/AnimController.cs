@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEngine.Rendering.DebugUI;
 
 public class AnimController : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class AnimController : MonoBehaviour
     [SerializeField] private Transform attack;
 
     private PlayerAnim player;
+    private Enemy enemy;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         player = FindAnyObjectByType<PlayerAnim>();
+        enemy = GetComponentInParent<Enemy>();
     }
 
     public void PlayerAnim(int value)
@@ -30,10 +33,12 @@ public class AnimController : MonoBehaviour
         if (hit != null) {
             player.onHit();
         }
-        else
-        {
+    }
 
-        }
+    public void OnHit()
+    {
+        anim.SetTrigger("hit");
+        enemy.health--;
     }
 
     private void OnDrawGizmosSelected()

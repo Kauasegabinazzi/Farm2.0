@@ -6,9 +6,13 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private AnimController anim;
+
+    [Header("Stats")]
     private Player player;
+    public float health;
 
     // Start is called before the first frame update
     void Start()

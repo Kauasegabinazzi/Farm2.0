@@ -104,7 +104,8 @@ public class PlayerAnim : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, radius, enemy);
 
         if (hit != null) {
-            Debug.Log("acertou");
+            // procura os objetos filhos desse objeto
+            hit.GetComponentInChildren<AnimController>().OnHit();
         }
     }
 

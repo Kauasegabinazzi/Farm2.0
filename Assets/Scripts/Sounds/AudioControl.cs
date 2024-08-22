@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class AudioControl : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private AudioClip otherMusic;
+    private AudioManager manager;
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        manager = FindAnyObjectByType<AudioManager>();
+
+        manager.PlayBGM(otherMusic);
     }
 }

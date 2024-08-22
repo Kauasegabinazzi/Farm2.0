@@ -3,6 +3,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    [SerializeField] private AudioSource audioSource;  
 
     private void Awake()
     {
@@ -14,5 +15,11 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void PlayBGM(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 }

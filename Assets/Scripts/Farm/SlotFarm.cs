@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SlotFarm : MonoBehaviour
 {
-
     [Header("Components")]
     [SerializeField] private SpriteRenderer spriteRender;
     [SerializeField] private Sprite hole;
@@ -16,9 +16,15 @@ public class SlotFarm : MonoBehaviour
     [SerializeField] private bool detecting;
     [SerializeField] private float waterAmout;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip holeSFX;
+    [SerializeField] private AudioClip carrotSFX;
+
     private int initialDig;
     private float currentWater;
     private bool dugHole;
+    private bool plantedCarrot;
 
     PlayerItens playerItens;
 
@@ -40,17 +46,22 @@ public class SlotFarm : MonoBehaviour
             }
 
             //enche o total de agua necessario
-            if (currentWater >= waterAmout)
+            if (currentWater >= waterAmout && !plantedCarrot)
             {
                 //plantar cenoura
+                audioSource.PlayOneShot(holeSFX);
                 spriteRender.sprite = carrot;
 
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    spriteRender.sprite = hole;
-                    playerItens.carrots++;
-                    currentWater = 0f;
-                }
+                plantedCarrot = true;
+
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && plantedCarrot)
+            {
+                audioSource.PlayOneShot(carrotSFX);
+                spriteRender.sprite = hole;
+                playerItens.carrots++;
+                currentWater = 0f;
             }
         }
     }

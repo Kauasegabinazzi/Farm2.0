@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     public float currenthealth;
     public Image healthBar;
     public bool isDead;
+    public float radius;
+    private bool detectPlayer;
+    public LayerMask layer;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +33,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isDead)
+        if (!isDead && detectPlayer)
         {
+            agent.isStopped = false;
+
             agent.SetDestination(player.transform.position);
 
             if (Vector2.Distance(transform.position, player.transform.position) <= agent.stoppingDistance)
@@ -56,5 +61,30 @@ public class Enemy : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, 180);
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        DetectPlayer();
+    }
+
+    public void DetectPlayer()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, radius, layer);
+
+        if (hit != null) {
+            detectPlayer = true;
+        }
+        else
+        {
+            detectPlayer = false;
+            anim.PlayerAnim(0);
+            agent.isStopped = true;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

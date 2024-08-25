@@ -28,6 +28,8 @@ public class DialogueControls : MonoBehaviour
     public bool isShowing; // janela vizivel
     private int index; // index sentencia
     private string[] sentence;
+    private string[] actorsName;
+    private Sprite[] actorsProfile;
 
     public static DialogueControls instance;
 
@@ -79,12 +81,14 @@ public class DialogueControls : MonoBehaviour
     }
 
     //chamar a fala do npc
-    public void Speech(string[] txt)
+    public void Speech(string[] txt, string[] actorName, Sprite[] actorProfile)
     {
         if (!isShowing)
         {
             dialogueOb.SetActive(true);
-            sentence = txt; 
+            sentence = txt;
+            actorsName = actorName;
+            actorsProfile = actorProfile;
             StartCoroutine(TypeSentence());
             isShowing = true;
         }

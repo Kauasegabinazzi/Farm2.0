@@ -9,6 +9,8 @@ public class NPC_Dialogue : MonoBehaviour
     bool playerHit;
     public DialogueSettings dialogue;
     private List<string> dialogueList = new List<string>();
+    private List<string> actorNameList = new List<string>();
+    private List<Sprite> actorSpriteList = new List<Sprite>();
 
     private void Start()
     {
@@ -39,6 +41,9 @@ public class NPC_Dialogue : MonoBehaviour
                     dialogueList.Add(dialogue.dialogues[i].sentence.spanish);
                     break;
             }
+
+            actorNameList.Add(dialogue.dialogues[i].actorName);
+            actorSpriteList.Add(dialogue.dialogues[i].profile);
         }
     }
 

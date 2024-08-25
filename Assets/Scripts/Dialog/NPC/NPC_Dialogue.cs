@@ -21,7 +21,7 @@ public class NPC_Dialogue : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerHit)
         {
-            DialogueControls.instance.Speech(dialogueList.ToArray());
+            DialogueControls.instance.Speech(dialogueList.ToArray(), actorNameList.ToArray(), actorSpriteList.ToArray());
         }
     }
 

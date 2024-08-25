@@ -67,6 +67,8 @@ public class DialogueControls : MonoBehaviour
             if (index < sentence.Length - 1) {
                 index++;
                 speechText.text = "";
+                profileSprite.sprite = actorsProfile[index];
+                actorNameText.text = actorsName[index];
                 StartCoroutine(TypeSentence());
             }
             else
@@ -76,6 +78,7 @@ public class DialogueControls : MonoBehaviour
                 dialogueOb.SetActive(false);
                 sentence = null;
                 isShowing = false;
+                actorNameText.text = "";
             }
         }
     }
@@ -89,6 +92,8 @@ public class DialogueControls : MonoBehaviour
             sentence = txt;
             actorsName = actorName;
             actorsProfile = actorProfile;
+            profileSprite.sprite = actorsProfile[index];
+            actorNameText.text = actorsName[index];
             StartCoroutine(TypeSentence());
             isShowing = true;
         }

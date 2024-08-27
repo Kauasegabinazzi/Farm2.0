@@ -25,6 +25,7 @@ public class SlotFarm : MonoBehaviour
     private float currentWater;
     private bool dugHole;
     private bool plantedCarrot;
+    private bool isPlayer; // fica true se o playertocar
 
     PlayerItens playerItens;
 
@@ -56,7 +57,7 @@ public class SlotFarm : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && plantedCarrot)
+            if (Input.GetKeyDown(KeyCode.E) && plantedCarrot && isPlayer)
             {
                 audioSource.PlayOneShot(carrotSFX);
                 spriteRender.sprite = hole;
@@ -76,11 +77,6 @@ public class SlotFarm : MonoBehaviour
             dugHole = true;
         }
 
-        //if (digAmout <= 0)
-        //{
-        //    //plantar cenoura
-        //    spriteRender.sprite = carrot;
-        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -94,6 +90,11 @@ public class SlotFarm : MonoBehaviour
         {
             detecting = true;
         }
+
+        if (collision.CompareTag("Player"))
+        {
+            isPlayer = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -101,6 +102,11 @@ public class SlotFarm : MonoBehaviour
         if (collision.CompareTag("water"))
         {
             detecting = false;
+        }
+
+        if (collision.CompareTag("Player"))
+        {
+            isPlayer = false;
         }
     }
 }

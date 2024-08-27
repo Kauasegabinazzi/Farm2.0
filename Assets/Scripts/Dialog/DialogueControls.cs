@@ -30,6 +30,7 @@ public class DialogueControls : MonoBehaviour
     private string[] sentence;
     private string[] actorsName;
     private Sprite[] actorsProfile;
+    private Player player;
 
     public static DialogueControls instance;
 
@@ -42,7 +43,7 @@ public class DialogueControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        player = FindAnyObjectByType<Player>();
     }
 
     // Update is called once per frame
@@ -79,6 +80,7 @@ public class DialogueControls : MonoBehaviour
                 sentence = null;
                 isShowing = false;
                 actorNameText.text = "";
+                player.isPaused = false;
             }
         }
     }
@@ -96,6 +98,7 @@ public class DialogueControls : MonoBehaviour
             actorNameText.text = actorsName[index];
             StartCoroutine(TypeSentence());
             isShowing = true;
+            player.isPaused = true;
         }
     }
 }

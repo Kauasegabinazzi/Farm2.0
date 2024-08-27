@@ -159,6 +159,10 @@ public class Player : MonoBehaviour
                 speed = initialSpeed;
             }
         }
+        else
+        {
+            IsCutting = false;
+        }
     }
 
     void OnDigging()
@@ -176,6 +180,10 @@ public class Player : MonoBehaviour
                 IsDigging = false;
                 speed = initialSpeed;
             }
+        }
+        else
+        {
+            IsDigging = false;
         }
     }
 
@@ -200,6 +208,10 @@ public class Player : MonoBehaviour
             {
                 _playerItens.currentWater -= 0.01f;
             }
+        }
+        else
+        {
+            IsWatering = false;
         }
     }
 
